@@ -159,11 +159,14 @@ console.log(sub(20, 10));
 //   Right,
 // }
 
+// enum Role {
+//   Admin = "Admin",
+//   User = "User"
+// }
 enum Role {
-  Admin = "Admin",
-  User = "User"
+  Admin = "Admin-One",
+  User = "User-OOne"
 }
-
 let user_type: Role = Role.User;
 console.log(user_type);
 
