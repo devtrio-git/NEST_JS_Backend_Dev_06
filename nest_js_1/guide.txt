@@ -1,0 +1,26 @@
+########### SETUP NEST JS APPLICATION ############
+
+Install Nest JS cli
+> npm install -g @nestjs/cli@10 (recommended)
+
+Check version
+> nest --version
+
+Run Nest cli
+> nest --help
+
+For specific cmd help
+> nest build --help
+
+Creating First Nest Application
+> nest new nest-first --dry-run (Use dry run to preview before file generation.)
+> nest new nest-first@10.0.0
+
+Run Project
+>nest start
+>npm run start:dev (enabled realtime changes)
+
+
+Create module
+>nest generate module users --dry-run
+
