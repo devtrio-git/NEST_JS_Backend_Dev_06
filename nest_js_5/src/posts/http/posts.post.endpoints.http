@@ -1,0 +1,24 @@
+POST http://localhost:8080/posts
+Content-Type: application/json
+
+{
+  "title": "Malik Blog Post",
+  "postType": "post",
+  "slug": "malik-blog-post",
+  "status": "draft",
+  "content": "This is the blog content",
+  "schema": "{\"@type\":\"BlogPosting\",\"headline\":\"Malik Blog Post\"}",
+  "featuredImageUrl": "https://example.com/image.jpg",
+  "publishedOn": "2026-02-07T10:00:00Z",
+  "tags": ["nestjs", "backend", "api"],
+  "metaOptions": [
+    {
+      "key": "author",
+      "value": "Malik Jahangir"
+    },
+    {
+      "key": "readingTime",
+      "value": "5 min"
+    }
+  ]
+}
