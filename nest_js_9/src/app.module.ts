@@ -1,0 +1,48 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "./users/user.entity";
+import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { TagsModule } from './tags/tags.module';
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import appConfig from './config/app.config';
+import dbConfig from './config/db.config';
+
+@Module({
+  imports: [
+    UsersModule,
+    PostsModule,
+    AuthModule,
+    MetaOptionsModule,
+    TagsModule,
+
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ".env.development",
+      load: [appConfig, dbConfig],
+    }),
+
+  TypeOrmModule.forRootAsync({
+    imports:[ConfigModule],
+    inject: [ConfigService],
+    useFactory:(configService: ConfigService)=>({
+      type: 'postgres',
+      // entities: [User],
+      autoLoadEntities: configService.get('database.autoLoadEntities'),
+      synchronize: configService.get('database.synchronize'),
+      port: configService.get('database.port'),
+      host: configService.get('database.host'),
+      username: configService.get('database.user'),
+      password: configService.get('database.password'),
+      database: configService.get('database.name'),
+    })
+  }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule { }

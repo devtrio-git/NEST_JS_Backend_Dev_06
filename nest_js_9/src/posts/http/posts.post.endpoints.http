@@ -1,0 +1,20 @@
+POST http://localhost:8080/posts
+Content-Type: application/json
+
+{
+  "authorId": 5,
+  "title": "Php12",
+  "postType": "post",
+  "slug": "malik-blog-post",
+  "status": "draft",
+  "content": "This is the blog content",
+  "schema": "{\"@type\":\"BlogPosting\",\"headline\":\"Malik Blog Post\"}",
+  "featuredImageUrl": "https://example.com/image.jpg",
+  "publishedOn": "2026-02-07T10:00:00Z",
+  "tags": [5, 6],
+  "metaOptions":
+  {
+    "metaValue": "{\"Sidebar\": true, \"Footer\": false}"
+  }
+
+}
