@@ -111,3 +111,63 @@ class Blogs {
 const post1 = new Posts(user);
 const blog1 = new Blogs(user);
 
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+// inherit abs class .........
+abstract class Bird {
+  protected constructor() { }
+
+  abstract getName(): string;
+  fly() {
+    return `${this.getName()} is flying`;
+  }
+}
+
+class Crow extends Bird {
+  constructor() {
+    super();
+  }
+  getName(): string {
+    return "Crow";
+  }
+}
+
+class Owl extends Bird {
+  constructor() {
+    super();
+  }
+
+  getName(): string {
+    return "Owl";
+  }
+}
+
+let c1 = new Crow();
+let o1 = new Owl();
+
+
+console.log(c1.fly(), o1.fly());
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+abstract class ImpBird {
+  abstract getName(): string;
+}
+
+class Crow1 implements ImpBird {
+  getName(): string {
+    return "Crow";
+  }
+}
+
+class Owl1 implements ImpBird {
+  getName(): string {
+    return "Owl";
+  }
+}
+
+let c11 = new Crow1();
+let o11 = new Owl1();
+console.log(c11.getName());
+console.log(o11.getName());
+
