@@ -150,6 +150,7 @@ let o1 = new Owl();
 
 console.log(c1.fly(), o1.fly());
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 abstract class ImpBird {
   abstract getName(): string;
 }

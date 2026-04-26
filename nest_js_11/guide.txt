@@ -1,0 +1,194 @@
+########### SETUP NEST JS APPLICATION ############
+
+Install Nest JS cli
+> npm install -g @nestjs/cli@10 (recommended)
+
+Check version
+> nest --version
+
+Run Nest cli
+> nest --help
+
+For specific cmd help
+> nest build --help
+
+Creating First Nest Application
+> nest new nest-first --dry-run (Use dry run to preview before file generation.)
+> nest new nest-first@10.0.0
+
+Run Project
+>nest start
+>npm run start:dev (enabled realtime changes)
+
+
+Create module
+>nest generate module users --dry-run
+
+
+Create Controller
+>nest generate controller users --dry-run
+>nest generate --help (to get info about generate cmd)
+>nest generate controller users --no-spec (create controller without test file)
+
+
+DTO
+https://github.com/typestack/class-validator
+https://www.npmjs.com/package/class-validator
+
+class validator
+npm i class-validator@0.14.1
+npm i class-transformer@0.5.1
+npm i @nestjs/mapped-types@2.0.5
+
+create services file with providers folder
+>nest generate service posts/providers/posts --flat --no-spec
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Api & Code Documentation
+
+Installation
+>npm i @nestjs/swagger@7.3.0
+
+
+>npm i @compodoc/compodoc@1.1.23
+scripts: {
+	"doc": "npx @compodoc/compodoc -p tsconfig.json -s --port 3001 --watch -d ./documentation"
+}
+npm run doc
+Code Documentation
+	For Developer
+
+POST DTO SLUG REGEX
+/^[a-z0-9]+(?:-[a-z0-9]+)*$/
+
+
+data payload
+  "schema": "{\"name\":\"Owais\",\"exp\":10,\"edu\":\"MS\"}",
+  "featuredImageUrl": "http://127.0.0.1:8080/images/2.png",
+  "publishedOn": "2026-02-07T10:30:00Z",
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+DB PostgreSQL
+
+
+psql --version
+
+>npm i typeorm@0.3.20
+>npm i @nestjs/typeorm@10.0.2
+>npm i pg@8.11.5
+
+
+connect db in app module file
+create user entity and use in app module entities [] to inform TypeOrm table created
+
+connect with service file with repository
+import user repository in user module too  TypeOrmModule.forFeature([User])
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+psql -U postgres -h localhost
+
+\l
+This shows all databases.
+
+CREATE DATABASE backend_practice;
+
+\l
+
+\c backend_practice
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+\dt
+
+INSERT INTO users (name, email, password)
+VALUES
+('Jahangir', 'jahangir@gmail.com', '123456'),
+('Ali', 'ali@gmail.com', 'password1'),
+('Sara', 'sara@gmail.com', 'pass789');
+
+
+SELECT * FROM users;
+
+SELECT * FROM users WHERE email = 'ali@gmail.com';
+
+UPDATE users
+SET name = 'Ali Khan'
+WHERE email = 'ali@gmail.com';
+
+DELETE FROM users
+WHERE email = 'sara@gmail.com';
+
+
+create table posts (
+  id serial primary key,
+  title varchar(200) not null
+);
+
+ALTER TABLE posts
+ADD COLUMN user_id INT REFERENCES users(id);
+
+INSERT INTO posts (title, user_id)
+VALUES
+('nest js', 1),
+('react', 1);
+
+SELECT *
+FROM posts
+WHERE user_id = 1;
+
+
+SELECT users.name, posts.title
+FROM users
+INNER JOIN posts
+ON users.id = posts.user_id
+WHERE users.id = 1;
+
+
+DROP TABLE posts CASCADE;
+DROP DATABASE database_name;
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+NEST CONFIG
+>npm i @nestjs/config@3.2.2
+>npm i joi@17.12.2
+
+LOG  ROOT  TEST  FILE
+  console.log(process.env.NODE_ENV);
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+nest generate pr users/providers/users-create-many.provider --flat --no-spec --dry-run
+nest g pr /common/pagination/provider/pagination.provider --flat --no-spec
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Auth
+>npm i bcrypt@5.1.1
+npm i @nestjs/jwt@10.2.0
+
+
+xxxxxxxxxxxxxxxxxxxxxxxx
+implement
+bcryp and hash provider in auth server.
+use hash provider to create user in create  user provider
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+create signin dto
+find user by email provder and service to use in sign in
+create sign in controller service provider
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+setup jwt  env , config and import JWTMODULE jwtConfig in auth module,
+inject jwt config in sign in servie and use it.

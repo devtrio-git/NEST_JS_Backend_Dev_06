@@ -1,0 +1,18 @@
+POST http://localhost:8080/posts
+Content-Type: application/json
+
+{
+  "title": "LMMs",
+  "postType": "post",
+  "slug": "py-batch-04",
+  "status": "draft",
+  "content": "this is MERN stack development course",
+  "schema": "{\"name\":\"Owais\",\"exp\":10,\"edu\":\"MS\"}",
+  "featuredImageUrl": "http://127.0.0.1:8080/images/2.png",
+  "publishedOn": "2026-02-07T10:30:00Z",
+  "metaOptions": {
+    "metaValue": "{\"Sidebar\": true, \"footer\": false}"
+  },
+  "authorId": 1,
+  "tags": [3, 5]
+}

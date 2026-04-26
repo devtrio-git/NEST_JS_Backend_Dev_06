@@ -1,0 +1,31 @@
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "firstName": "test",
+  "lastName": "user",
+  "email": "testuser2@gmail.com",
+  "password": "Admin@123x"
+}
+
+
+###
+POST http://localhost:8080/users/create-many
+Content-Type: application/json
+
+{
+  "users": [
+    {
+      "firstName": "Hassan33",
+      "lastName": "Bhai33",
+      "email": "hass33333an@gmail.com",
+      "password": "Admin@123x"
+    },
+    {
+      "firstName": "Hassan3345",
+      "lastName": "Bha343i53",
+      "email": "hass333343543an@gmail.com",
+      "password": "Admin@1253x"
+    }
+  ]
+}

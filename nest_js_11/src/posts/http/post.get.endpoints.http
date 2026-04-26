@@ -1,0 +1,5 @@
+http://localhost:8080/posts
+    ?limit=10
+    &page=1
+    &startDate=Sun Apr 19 2026
+
