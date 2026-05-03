@@ -1,0 +1,19 @@
+POST http://localhost:8080/posts
+Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2LCJlbWFpbCI6InNhcmltQGdtYWlsLmNvbSIsImlhdCI6MTc3NzgyNDg2MSwiZXhwIjoxNzc3ODI4NDYxLCJhdWQiOiJsb2NhbGhvc3Q6ODA4MCIsImlzcyI6ImxvY2FsaG9zdDo4MDgwIn0.kmRU__LnbwrKypxLS0K5dF-TJS_ZWXlWKWRqxocgvQU
+
+{
+  "title": "Php12",
+  "postType": "post",
+  "slug": "malik-blog-post",
+  "status": "draft",
+  "content": "This is the blog content",
+  "schema": "{\"@type\":\"BlogPosting\",\"headline\":\"Malik Blog Post\"}",
+  "featuredImageUrl": "https://example.com/image.jpg",
+  "tags": [5, 6],
+  "metaOptions":
+  {
+    "metaValue": "{\"Sidebar\": true, \"Footer\": false}"
+  }
+
+}
