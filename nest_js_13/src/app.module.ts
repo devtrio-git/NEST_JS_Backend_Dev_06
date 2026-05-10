@@ -1,0 +1,64 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/user.entity';
+import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { TagsModule } from './tags/tags.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PaginationModule } from './common/pagination/pagination.module';
+import appConfig from './config/app.config';
+import dbConfig from './config/db.config';
+import jwtConfig from './auth/config/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
+import { AccessTokenGuard } from "./auth/guard/access-token/access-token.guard";
+import { APP_GUARD } from "@nestjs/core";
+import { AuthenticationGuard } from "./auth/guard/authentication/authentication.guard";
+
+@Module({
+  imports: [
+    UsersModule,
+    PostsModule,
+    AuthModule,
+    MetaOptionsModule,
+    TagsModule,
+
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env.development',
+      load: [appConfig, dbConfig],
+    }),
+
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        // entities: [User],
+        autoLoadEntities: configService.get('database.autoLoadEntities'),
+        synchronize: configService.get('database.synchronize'),
+        port: configService.get('database.port'),
+        host: configService.get('database.host'),
+        username: configService.get('database.user'),
+        password: configService.get('database.password'),
+        database: configService.get('database.name'),
+      }),
+    }),
+
+    PaginationModule,
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
+  ],
+  controllers: [AppController],
+  providers: [AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthenticationGuard
+    },
+    AccessTokenGuard,
+  ],
+})
+export class AppModule {}
