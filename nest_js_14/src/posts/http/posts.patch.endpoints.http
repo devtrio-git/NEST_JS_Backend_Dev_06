@@ -1,0 +1,21 @@
+PATCH http://localhost:8080/posts
+Content-Type: application/json
+
+{
+  "id": 14,
+  "authorId": 5,
+  "title": "Python",
+  "postType": "post",
+  "slug": "malik-blog-post",
+  "status": "draft",
+  "content": "This is the blog content",
+  "schema": "{\"@type\":\"BlogPosting\",\"headline\":\"Malik Blog Post\"}",
+  "featuredImageUrl": "https://example.com/image.jpg",
+  "publishedOn": "2026-02-07T10:00:00Z",
+  "tags": [3],
+  "metaOptions":
+  {
+    "metaValue": "{\"Sidebar\": true, \"Footer\": false}"
+  }
+
+}
