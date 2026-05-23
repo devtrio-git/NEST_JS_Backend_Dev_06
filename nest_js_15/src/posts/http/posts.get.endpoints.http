@@ -1,0 +1,4 @@
+http://localhost:8080/posts
+    ?limit=5
+    &page=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2LCJlbWFpbCI6InNhcmltQGdtYWlsLmNvbSIsImlhdCI6MTc3OTIyNTYxNSwiZXhwIjoxNzc5MjI5MjE1LCJhdWQiOiJsb2NhbGhvc3Q6ODA4MCIsImlzcyI6ImxvY2FsaG9zdDo4MDgwIn0.HS_2-zHJDm-tEzhm64DoOjoElzeXU9uXNghvbduh5z8
